@@ -1,4 +1,8 @@
 class Stock < ApplicationRecord
+  has_many :user_stocks
+  has_many :users, through: :user_stocks
+
+  validates :name, :ticker, presence: true
 
   def self.new_lookup(ticker_symbol)
     iex_client = Rails.application.credentials.iex_client
@@ -14,6 +18,10 @@ class Stock < ApplicationRecord
     rescue => exception
       return nil
     end
+  end
+
+  def self.find_by_ticker(ticker)
+    where(ticker: ticker).first
   end
 
 end
