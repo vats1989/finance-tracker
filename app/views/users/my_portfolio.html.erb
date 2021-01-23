@@ -1,7 +1,15 @@
 <h1>My Portfolio</h1>
 
 <div class="search-area">
-  <h3>Search Stocks</h3>
+  <div class="form-group row">
+    <div class="col-sm-9 no-right-padding">
+      <h3>Search Stocks</h3>
+    </div>
+    <div class="col-sm-3 no-left-padding">
+      <%= fa_icon 'refresh 2x' %>
+    </div>
+  </div>
+  <!-- Need to implement above functionality -->
 
   <%= form_tag search_stock_path, remote: true, method: :get do %>
     <div class="form-group row">
@@ -17,8 +25,8 @@
   <% end %>
 
 </div>
-<div id="results">
 
+<div id="results">
 </div>
 
 <% if !@tracked_stocks.empty? %>
